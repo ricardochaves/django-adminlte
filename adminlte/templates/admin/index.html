@@ -1,0 +1,69 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+
+
+
+{% block content %}
+ <!-- aqui entra o content do index. se for colocar grafico então é aqi que entra -->
+{% endblock %}
+
+
+
+{% block sidebar %}
+<div class="row">
+	<div class="col-md-4">
+		<div class="box">
+			<div class="box-header">
+				<h3 class="box-title">{% trans 'Recent actions' %}</h3>
+			<div class="box-body">	
+				
+				
+				
+				{% load log %}
+				{% get_admin_log 10 as admin_log for_user user %}
+				{% if not admin_log %}
+				
+				<p>{% trans 'None available' %}</p>
+				
+				{% else %}
+				
+					<p>{% trans 'My actions' %}</p>
+					<ul class="ul-histori-object">
+					{% for entry in admin_log %}
+						<li>
+						
+						{% if entry.is_deletion or not entry.get_admin_url %}
+							<i class="fa fa-trash" ></i> {{ entry.object_repr }}
+						{% else %}
+							{% if entry.is_addition %}<i class="fa fa-plus" ></i>{% endif %}
+							{% if entry.is_change %}<i class="fa fa-edit" ></i>{% endif %}
+							<a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+						{% endif %}
+					
+						{% if entry.content_type %}
+						
+							<span class="mini quiet">{% filter capfirst %}{{ entry.content_type }}{% endfilter %}</span>
+						{% else %}
+							<span class="mini quiet">{% trans 'Unknown content' %}</span>
+						{% endif %}
+						</li>
+					{% endfor %}
+					</ul>
+				
+				{% endif %}
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

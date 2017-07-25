@@ -1,0 +1,18 @@
+{% load i18n admin_urls %}
+
+{% if show_save %}<input type="submit" value="{% trans 'Save' %}" class="btn btn-primary" name="_save" />{% endif %}
+{% if show_delete_link %}
+    {% url opts|admin_urlname:'delete' original.pk|admin_urlquote as delete_url %}
+    <a href="{% add_preserved_filters delete_url %}" class="btn btn-danger">{% trans "Delete" %}</a>
+{% endif %}
+{% if show_save_as_new %}<input class="btn btn-info" type="submit" value="{% trans 'Save as new' %}" name="_saveasnew" />{% endif %}
+{% if show_save_and_add_another %}<input class="btn btn-info" type="submit" value="{% trans 'Save and add another' %}" name="_addanother" />{% endif %}
+{% if show_save_and_continue %}<input class="btn btn-info" type="submit" value="{% trans 'Save and continue editing' %}" name="_continue" />{% endif %}
+
+{% if change %}{% if not is_popup %}
+    {% block object-tools-items %}
+        {% url opts|admin_urlname:'history' original.pk|admin_urlquote as history_url %}
+        <a href="{% add_preserved_filters history_url %}" class="btn btn-default">{% trans "History" %}</a>
+    {% if has_absolute_url %}<li><a href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif %}
+    {% endblock %}
+{% endif %}{% endif %}

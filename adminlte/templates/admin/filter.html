@@ -1,0 +1,7 @@
+{% load i18n %}
+<select class="form-control" onChange="top.location.href=this.options[this.selectedIndex].value;">
+<option {% if choices.0.selected %} selected {% endif %} value="{{ choices.0.query_string|iriencode }}" >{% blocktrans with filter_title=title %} {{ filter_title }} {% endblocktrans %}</option>
+{% for choice in choices %}
+	<option {% if choice.selected and forloop.counter0 != 0 %} selected {% endif %} value="{{ choice.query_string|iriencode }}" >{{ choice.display }}</option>
+{% endfor %}
+</select>

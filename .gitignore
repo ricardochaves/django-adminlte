@@ -1,0 +1,10 @@
+/dist/
+*.pyc
+*.sqlite3
+*.py[co]
+*.egg*
+*.swp
+*~
+*.log
+.idea
+/django_lteadmin.egg-info/

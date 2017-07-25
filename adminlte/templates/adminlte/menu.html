@@ -1,0 +1,61 @@
+{% load i18n static menu_functions extra_functions %}
+
+{% block ltemain-sidebar %}
+	
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+ <section class="sidebar" style="height: auto;">
+	<div class="user-panel">
+        <div class="pull-left image">
+          {{user|userimage}}
+        </div>
+        <div class="pull-left info">
+          <p>{% firstof user.get_short_name user.get_username %}</p>
+          <!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a>-->
+        </div>	
+    </div>
+	<ul class="sidebar-menu">
+
+	    {% get_menu request as apps %}
+
+		
+    {% if apps %}
+      {% for app in apps %}
+		<li class="header">
+				<a href="{{ app.app_url }}" class="section" title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">{{ app.name }}</a>				
+			</li>
+			{% for model in app.models %}
+			<li class="treeview">
+			  <a href="{{ model.admin_url }}">
+				<i class="fa {{ app|get_icon_class_from_model:model }}"></i>
+					<span>{{ model.name }}</span>		
+				
+				<ul class="treeview-menu">
+
+    				{% if model.add_url %}
+						<li><a href="{{ model.add_url }}"><i class="fa {{ app|get_icon_class_add_from_model:model }}"></i>{% trans 'Add' %}</a></li>
+						
+					{% else %}
+						<td>&nbsp;</td>
+					{% endif %}
+
+					{% if model.admin_url %}
+						<li><a href="{{ model.admin_url }}"><i class="fa {{ app|get_icon_class_change_from_model:model }}"></i>{% trans 'Change' %}</a></li>
+					{% else %}
+						<td>&nbsp;</td>
+					{% endif %}
+					  
+			    </ul>
+			  </a>
+		    </li>
+			{% endfor %}
+	  {% endfor %}
+    {% endif %}
+	
+	
+
+	</ul>
+ </section>
+    <!-- /.sidebar -->
+  </aside>
+    {% endblock %}

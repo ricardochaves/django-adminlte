@@ -1,0 +1,21 @@
+{% load i18n %}
+
+		<div class="col-md-4">
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <i class="fa fa-list"></i>
+
+              <h3 class="box-title">{% trans "Summary" %}</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <ul>
+				{% for model_name, object_count in model_count %}
+				<li>{{ model_name|capfirst }}: {{ object_count }}</li>
+				{% endfor %}
+			</ul>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>

@@ -1,0 +1,12 @@
+.form-control#id_password{
+overflow: hidden;
+}
+
+.ul-histori-object, .selector-chooser {
+    list-style-type: none;
+}
+
+.selector-chooser {
+    padding: 0px;
+    margin-bottom: 7px;
+}

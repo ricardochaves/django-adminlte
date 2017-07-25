@@ -1,0 +1,55 @@
+{% load extra_functions %}
+
+    {% if fieldset.name %}<h4>{{ fieldset.name }}</h4>{% endif %}
+    {% if fieldset.description %}
+        <div class="description">{{ fieldset.description|safe }}</div>
+    {% endif %}
+    {% for line in fieldset %}
+            
+			
+            {% for field in line %}
+                  <div{% if not singlefield %}
+					class="form-group {% if field|change_erro_html %} has-error {% endif %} field-box{% if field.field.name %} field-{{ field.field.name }}{% endif %}"{% endif %}>
+				  {% if forloop.first %}
+				  
+					<label class="col-sm-2 control-label" for="{{ field.field.name }}">{{ field.field.label }}</label>
+				  
+				{% endif %}
+				
+					{% if not line.fields|length_is:'1' and not field.is_readonly %}{{ field.errors }}{% endif %}
+                    {% if field.is_checkbox %}
+						
+						<div class="col-sm-10">
+							<div class="checkbox">
+							  <label>
+								{{ field.field }}
+							  </label>
+							</div>
+						</div>
+                        
+                    
+					{% else %}
+                        
+                        {% if field.is_readonly %}
+                            <p>{{ field.contents }}</p>
+                        {% else %}
+							<div class="col-sm-10">
+							
+								{{ field.field|add_class:"form-control" }}
+								
+								{% if field.field.help_text %}
+									<div class="help">{{ field.field.help_text|safe }}</div>
+								{% endif %}
+
+								{% if line.fields|length_is:'1' %}{{ line.errors }}{% endif %}
+
+							</div>
+                        {% endif %}
+                    {% endif %}
+                    
+					</div>
+            {% endfor %}
+        
+    {% endfor %}
+
+	
