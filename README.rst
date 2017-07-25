@@ -25,19 +25,10 @@ Add the app ``adminlte`` to ``settings.py``
         ...
     )
 
-Execute migrate:
-
-    python manage.py migrate
 
 ###############################
 What will you see in your admin?
 ###############################
-
-
-Avatar
-###############################
-The ``User`` object will gain a relationship that will store a picture of the avatar.
-You can see this in the user-inclusion form.
 
 Menu Icons
 ###############################
