@@ -5,7 +5,9 @@ Change the default Django templates to the `LTE <https://almsaeedstudio.com/them
 
 This is my first open source project done in Django, I hope it will be useful for you and look forward to suggestions, bugs and collaborations.
 
-### How do I get set up? ###
+###############################
+How do I get set up?
+###############################
 
 Instale usando PyPI:
 
