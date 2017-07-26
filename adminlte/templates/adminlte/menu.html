@@ -25,27 +25,10 @@
 				<a href="{{ app.app_url }}" class="section" title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">{{ app.name }}</a>				
 			</li>
 			{% for model in app.models %}
-			<li class="treeview">
-			  <a href="{{ model.admin_url }}">
+			 <li> 
+  			<a href="{{ model.admin_url }}">
 				<i class="fa {{ app|get_icon_class_from_model:model }}"></i>
 					<span>{{ model.name }}</span>		
-				
-				<ul class="treeview-menu">
-
-    				{% if model.add_url %}
-						<li><a href="{{ model.add_url }}"><i class="fa {{ app|get_icon_class_add_from_model:model }}"></i>{% trans 'Add' %}</a></li>
-						
-					{% else %}
-						<td>&nbsp;</td>
-					{% endif %}
-
-					{% if model.admin_url %}
-						<li><a href="{{ model.admin_url }}"><i class="fa {{ app|get_icon_class_change_from_model:model }}"></i>{% trans 'Change' %}</a></li>
-					{% else %}
-						<td>&nbsp;</td>
-					{% endif %}
-					  
-			    </ul>
 			  </a>
 		    </li>
 			{% endfor %}
