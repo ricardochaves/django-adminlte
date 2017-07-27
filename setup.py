@@ -11,7 +11,7 @@ EXCLUDE_FROM_PACKAGES = ['.vscode']
 
 setup(
     name='django-lteadmin',
-    version='0.2.0-alpha',
+    version='0.3.0-alpha',
     url='https://github.com/ricardochaves/django-adminlte',
     author='Ricardo Baltazar Chaves',
     author_email='ricardobchaves6@gmail.com',
