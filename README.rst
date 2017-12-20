@@ -37,7 +37,6 @@ Menu icons are set in the Model:
 
 
 
-
     class MyModel(models.Model):
         Name = models.CharField(
         ...
