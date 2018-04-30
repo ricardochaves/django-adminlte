@@ -1,3 +1,6 @@
+.. image:: https://badge.fury.io/py/django-lteadmin.svg
+    :target: https://badge.fury.io/py/django-lteadmin
+    
 ###############################
 Django-AdminLTE
 ###############################
